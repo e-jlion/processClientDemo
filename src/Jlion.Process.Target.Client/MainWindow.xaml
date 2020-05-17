@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Button Content="获取基本信息" Click="btnInfo_Click" Name="btnInfo" HorizontalAlignment="Left" Margin="80,30,0,0" VerticalAlignment="Top" Width="75"/>
+        <TextBox HorizontalAlignment="Left" Name="txtInfo" Height="180" Margin="80,75,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="300"/>
+        <Button Content="获取完整信息" Name="btnComplateInfo" Click="btnComplateInfo_Click" HorizontalAlignment="Left" Margin="190,30,0,0" VerticalAlignment="Top" Width="75"/>
+
     </Grid>
 </Window>

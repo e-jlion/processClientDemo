@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FastWin32, Version=2.6.7442.22774, Culture=neutral, PublicKeyToken=c28cf53d24f32720, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FastWin32.1.0.0\lib\FastWin32.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -61,6 +64,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="InjectService.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -84,10 +88,20 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="FastWin32.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Jlion.Process.HookCore\Jlion.Process.HookCore.csproj">
+      <Project>{38164b4c-3d06-4c11-b928-cef0beb41785}</Project>
+      <Name>Jlion.Process.HookCore</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

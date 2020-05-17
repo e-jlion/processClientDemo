@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Jlion.Process.Client"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="MainWindow" Height="255.679" Width="572.75">
+    <Grid Margin="0,0,3.857,10.857">
+        <Button Content="注入到第三方程序" Name="btnInject" Click="btnInject_Click" HorizontalAlignment="Left" Margin="295,80,0,0" VerticalAlignment="Top" Width="150"/>
+        <Label Content="pid" HorizontalAlignment="Left" Margin="80,80,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Name="txbPid" Height="23" Margin="114,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="0"/>
+
     </Grid>
 </Window>

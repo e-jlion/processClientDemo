@@ -23,5 +23,11 @@ namespace Jlion.Process.Client
         {
             InitializeComponent();
         }
+
+        private void btnInject_Click(object sender, RoutedEventArgs e)
+        {
+            InjectService.pid = Convert.ToUInt32(txbPid.Text.Trim());
+            InjectService.Start();
+        }
     }
 }

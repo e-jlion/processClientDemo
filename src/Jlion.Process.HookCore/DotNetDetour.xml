@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DotNetDetour</name>
+    </assembly>
+    <members>
+        <member name="M:DotNetDetour.AssemblyUtil.CreateInstance``1(System.String,System.Object[])">
+            <summary>
+            在当前的程序集中反射创建实例
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="type"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DotNetDetour.AssemblyUtil.CreateInstance``1(System.String,System.String)">
+            <summary>
+            在给定的程序集中反射创建实例
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="assembleName"></param>
+            <param name="type"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DotNetDetour.AssemblyUtil.CreateInstance``1(System.String,System.String,System.Object[])">
+            <summary>
+            在给定的程序集中反射创建实例,并且传入构造函数的参数
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="assembleName"></param>
+            <param name="type"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="T:DotNetDetour.DetourWays.NativeDetourFor32Bit">
+            <summary>
+            inline hook,通过修改函数的前5字节指令为jmp target_addr实现
+            </summary>
+        </member>
+        <member name="M:DotNetDetour.DetourWays.NativeDetourFor32Bit.MakePlacholderMethodCallPointsToRawMethod(System.Reflection.MethodBase)">
+            <summary>
+            将对originalMethod的调用指向原函数
+            </summary>
+            <param name="originalMethod"></param>
+        </member>
+        <member name="M:DotNetDetour.IDetour.Patch(System.Reflection.MethodBase,System.Reflection.MethodBase,System.Reflection.MethodBase)">
+            <summary>
+            
+            </summary>
+            <param name="rawMethod">要hook的目标函数</param>
+            <param name="hookMethod">用户定义的函数，可以调用原始占位函数来实现对原函数的调用</param>
+            <param name="originalMethod">原始占位函数</param>
+        </member>
+        <member name="T:DotNetDetour.IMethodHookWithSet">
+            <summary>
+            此接口用于支持Hook初始化时进行回调
+            </summary>
+        </member>
+        <member name="M:DotNetDetour.IMethodHookWithSet.HookMethod(System.Reflection.MethodBase)">
+            <summary>
+            当前类每成功进行一个Hook的初始化，就会传入被Hook的原始方法（判断方法名称来确定是初始化的哪个方法），这个方法可用于获取方法所在的类（如：非公开类）。
+            注意：此方法应当当做静态方法来进行编码。
+            </summary>
+        </member>
+        <member name="T:DotNetDetour.LDasm">
+            <summary>
+            用于计算汇编指令长度，使用的是BlackBone的LDasm.c中的算法，我把他翻译成C#了
+            </summary>
+        </member>
+        <member name="M:DotNetDetour.LDasm.SizeofMin5Byte(System.Void*)">
+            <summary>
+            计算大于等于5字节的最少指令的长度
+            </summary>
+            <param name="code"></param>
+            <returns></returns>
+        </member>
+        <member name="P:DotNetDetour.DestAndOri.HookMethod">
+            <summary>
+            Hook代理方法
+            </summary>
+        </member>
+        <member name="P:DotNetDetour.DestAndOri.OriginalMethod">
+            <summary>
+            目标方法的原始方法
+            </summary>
+        </member>
+        <member name="M:DotNetDetour.MethodHook.Install(System.String)">
+            <summary>
+            安装监视器
+            </summary>
+        </member>
+        <member name="T:DotNetDetour.HookMethodAttribute">
+            <summary>
+            标记一个方法，使其作为目标方法的替代，这将使.NET框架执行到原始方法时转而执行被此特性标记的方法。
+            
+            如果提供OriginalMethod，OriginalMethod名称应当为“原始目标方法名_Original”，如果使用其他名称，应当设置相应的OriginalMethodName。
+            </summary>
+        </member>
+        <member name="M:DotNetDetour.HookMethodAttribute.#ctor(System.String,System.String,System.String)">
+            <summary>
+            标记要hook的目标类型中的指定方法。
+            类型名称为完全限定名，如果是泛型可以提供type`1[[System.Int32]]这种完整形式。
+            方法名称targetMethodName可以不提供，默认取当前方法名称。
+            如果提供OriginalMethod时，OriginalMethod名称应当为“原始目标方法名_Original”，如果使用其他名称，应当设置OriginalMethodName。
+            </summary>
+        </member>
+        <member name="M:DotNetDetour.HookMethodAttribute.#ctor(System.Type,System.String,System.String)">
+            <summary>
+            标记要hook的目标类型中的指定方法。
+            方法名称targetMethodName可以不提供，默认取当前方法名称。
+            如果提供OriginalMethod时，OriginalMethod名称应当为“原始目标方法名_Original”，如果使用其他名称，应当设置OriginalMethod。
+            </summary>
+        </member>
+        <member name="T:DotNetDetour.OriginalMethodAttribute">
+            <summary>
+            标记一个方法，使得该方法代表原始方法，从而可以被用户代码调用。
+            此方法命名为 原始目标方法名_Original；如果使用其他名称，在HookMethodAttribute中应当指明。
+            </summary>
+        </member>
+        <member name="T:DotNetDetour.RememberTypeAttribute">
+            <summary>
+            标记函数的泛型参数或私有类型参数。
+            私有类型要指明其完全限定名，如：System.Int32、type`1[[System.Int32]]这种完整形式。
+            </summary>
+        </member>
+    </members>
+</doc>

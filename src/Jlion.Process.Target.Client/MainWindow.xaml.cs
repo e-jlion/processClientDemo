@@ -1,4 +1,5 @@
-﻿using System;
+﻿//using Jlion.Process.Target.ClientCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,20 @@ namespace Jlion.Process.Target.Client
         public MainWindow()
         {
             InitializeComponent();
+            //HookService.Start("");
+        }
+
+        private void btnInfo_Click(object sender, RoutedEventArgs e)
+        {
+            var service = new ProcessService();
+            this.txtInfo.Text = service.GetProcessInfo();
+        }
+
+        private void btnComplateInfo_Click(object sender, RoutedEventArgs e)
+        {
+            var service = new ProcessService();
+            var response = service.GetProcessInfo(new Jlion.Process.Target.Client.Model.ProcessRequest() { Version = "v-Demo 1.0 版本" });
+            this.txtInfo.Text = response.Name + response.Version;
         }
     }
 }
